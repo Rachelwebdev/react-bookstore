@@ -1,7 +1,7 @@
 import './styles/App.module.css';
 import { Routes, Route } from 'react-router-dom';
-import Books from './components/Books';
-import Categories from './components/Categories';
+import Books from './route/Books';
+import Categories from './route/Categories';
 import Navbar from './components/Navbar';
 import NotFound from './components/NotFound';
 
