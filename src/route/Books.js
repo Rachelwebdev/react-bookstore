@@ -11,7 +11,6 @@ function Books() {
   return (
     <>
       <div>
-        <h1>Bookstore</h1>
         {books.map((book) => (
           <Book
             key={book.id}
