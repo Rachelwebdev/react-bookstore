@@ -1,4 +1,5 @@
-import { nanoid } from '@reduxjs/toolkit';
+// import { nanoid } from '@reduxjs/toolkit';
+import uniqid from 'uniqid';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/booksSlice';
@@ -12,7 +13,7 @@ function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const id = nanoid();
+    const id = uniqid();
     dispatch(addBook({ id, title, author }));
     setTitle('');
     setAuthor('');
