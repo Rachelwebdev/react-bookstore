@@ -1,28 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Book from '../components/Book';
 import Form from '../components/Form';
 
 function Books() {
+  const books = useSelector((state) => state.books.books);
+
   return (
     <>
-      <ul>
-        <Book
-          title="Psychology of Money"
-          author="Morgan Housel"
-        />
-        <Book
-          title="The Silent Patient"
-          author="Alex Michael"
-        />
-        <Book
-          title="The Great Gatsby"
-          author="Scott Fitzgerald"
-        />
-        <Book
-          title="The Hunger Games"
-          author="Suzanne Collins"
-        />
-      </ul>
+      <div>
+        {books.map((book) => (
+          <Book
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            id={book.id}
+          />
+        ))}
+      </div>
       <Form />
     </>
   );
