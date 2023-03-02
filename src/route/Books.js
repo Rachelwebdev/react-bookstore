@@ -8,27 +8,20 @@ function Books() {
   const dispatch = useDispatch();
   const { books, isLoading } = useSelector((store) => store.books);
 
-  const status = useSelector((store) => store.books.status);
-  const error = useSelector((store) => store.books.error);
-
   useEffect(() => {
     dispatch(getBookData());
   }, [dispatch]);
 
-  if (status === 'loading') {
+  if (isLoading) {
     return <h1>Loading...</h1>;
   }
 
-  if (!isLoading && books.length === 0) {
-    return <h1>No Books to Display</h1>;
-  }
-
-  if (status === 'failed') {
+  if (books.length === 0) {
     return (
-      <div>
-        Error:
-        {error}
-      </div>
+      <>
+        <h1>No Books to Display</h1>
+        <Form />
+      </>
     );
   }
 
@@ -43,8 +36,8 @@ function Books() {
             id={book.item_id}
           />
         ))}
+        <Form />
       </div>
-      <Form />
     </>
   );
 }
