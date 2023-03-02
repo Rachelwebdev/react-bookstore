@@ -2,20 +2,47 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 // import bookList from './booksList';
 
-const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi';
+const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/C1TOCRXy2TrdHgmdGVbc/books';
 
-const key = 'C1TOCRXy2TrdHgmdGVbc';
+export const postBook = createAsyncThunk(
+  'bookData/postBookData',
+  async (bookData, thunkAPI) => {
+    try {
+      const response = await axios.post(BASE_URL, bookData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
 
-export const fetchBookData = createAsyncThunk(
-  'bookData/fetchBookData',
-  async () => {
-    const response = await axios.get(`${BASE_URL}${key}/books`);
-    return response.data;
+export const getBookData = createAsyncThunk(
+  'bookData/getBookData',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios(BASE_URL);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
+  },
+);
+
+export const deleteBook = createAsyncThunk(
+  'bookData/deleBook',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
   },
 );
 
 const initialState = {
   books: [],
+  isLoading: false,
   status: 'idle',
   error: null,
 };
@@ -41,16 +68,39 @@ const booksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBookData.pending, (state) => ({
+      .addCase(postBook.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(postBook.fulfilled, (state) => ({
+        ...state,
+        isLoading: false,
+      }))
+      .addCase(postBook.rejected, (state) => ({
+        ...state,
+        isLoading: true,
+      }));
+
+    builder
+      .addCase(getBookData.pending, (state) => ({
         ...state,
         status: 'loading',
       }))
-      .addCase(fetchBookData.fulfilled, (state, action) => ({
-        ...state,
-        status: 'succeeded',
-        books: action.payload,
-      }))
-      .addCase(fetchBookData.rejected, (state, action) => ({
+      .addCase(getBookData.fulfilled, (state, action) => {
+        const responseObject = action.payload;
+        const newBookArr = Object.keys(responseObject).map((id) => {
+          const bookObj = responseObject[id][0];
+          bookObj.item_id = id;
+          return bookObj;
+        });
+        return {
+          ...state,
+          isLoading: false,
+          status: 'succeeded',
+          books: [...state.books, newBookArr],
+        };
+      })
+      .addCase(getBookData.rejected, (state, action) => ({
         ...state,
         status: 'error',
         error: action.error.message,
@@ -58,6 +108,6 @@ const booksSlice = createSlice({
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
+export const { booksActions } = booksSlice.actions;
 
 export default booksSlice.reducer;

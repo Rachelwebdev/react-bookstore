@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { booksActions, deleteBook } from '../redux/books/booksSlice';
 import styles from '../styles/Book.module.css';
 
 function Book({ title, author, id }) {
   const dispatch = useDispatch();
+  const removeHandler = (event) => {
+    const { id } = event.target.dataset;
+    dispatch(booksActions.removeBook(id));
+    dispatch(deleteBook(id));
+  };
+
   return (
     <>
       <li className={styles.singleBook}>
@@ -13,7 +19,8 @@ function Book({ title, author, id }) {
         <p>{author}</p>
         <button
           type="button"
-          onClick={() => dispatch(removeBook(id))}
+          data-id={id}
+          onClick={removeHandler}
         >
           remove
         </button>
