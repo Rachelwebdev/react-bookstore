@@ -1,8 +1,7 @@
-// import { nanoid } from '@reduxjs/toolkit';
 import uniqid from 'uniqid';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
+import { booksActions, postBook } from '../redux/books/booksSlice';
 import styles from '../styles/Form.module.css';
 
 function Form() {
@@ -12,9 +11,17 @@ function Form() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!title.trim() || !author.trim()) return;
 
-    const id = uniqid();
-    dispatch(addBook({ id, title, author }));
+    const bookData = {
+      item_id: uniqid(),
+      title,
+      author,
+      category: 'Fiction',
+    };
+
+    dispatch(booksActions.addBook(bookData));
+    dispatch(postBook(bookData));
     setTitle('');
     setAuthor('');
   };
