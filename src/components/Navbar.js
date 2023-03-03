@@ -1,16 +1,17 @@
 import React from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Navbar.module.css';
 
 function Navbar() {
   return (
     <nav className={styles.navMenu}>
-      <h1 className={styles.logo}>Bookstore CMS</h1>
       <ul className={styles.navLinks}>
+        <h1 className={styles.logo}>Bookstore CMS</h1>
         <li>
           <Link
             to="/"
-            className={styles.link}
+            className={styles.linkBooks}
           >
             Books
           </Link>
@@ -18,12 +19,15 @@ function Navbar() {
         <li>
           <Link
             to="/categories"
-            className={styles.link}
+            className={styles.linkCategories}
           >
             Categories
           </Link>
         </li>
       </ul>
+      <h3>
+        <FaUserCircle className={styles.FaUserCircle} />
+      </h3>
     </nav>
   );
 }
