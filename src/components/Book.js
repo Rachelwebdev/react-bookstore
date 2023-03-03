@@ -15,17 +15,6 @@ function Book({ title, author, id }) {
 
   return (
     <>
-      {/* <li className={styles.singleBook}>
-        <p>{title}</p>
-        <p>{author}</p>
-        <button
-          data-id={id}
-          type="button"
-          onClick={removeHandler}
-        >
-          remove
-        </button>
-      </li> */}
       <li className={styles.singleBook}>
         <div className={styles.bookDescription}>
           <p className={styles.category}>ACTION</p>
