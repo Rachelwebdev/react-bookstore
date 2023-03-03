@@ -8,3 +8,11 @@ input {
   margin-right: 2rem;
   padding: 0.8rem;
 }
+
+.submitBtn {
+  padding: 0.5rem;
+  background-color: #379cf6;
+  border: none;
+  color: #faebeb;
+  cursor: pointer;
+}

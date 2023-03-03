@@ -3,14 +3,18 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4rem;
+  padding: 2rem;
+  background-color: #fff;
 }
 
 .logo {
-  color: rgb(69, 21, 223);
+  color: #0290ff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .navLinks {
   display: flex;
+  align-items: center;
   list-style-type: none;
   margin-right: 2rem;
 }
@@ -19,17 +23,23 @@
   padding: 0 2rem;
 }
 
-.link {
-  font-weight: 700;
-  color: rgb(69, 21, 223);
+.linkBooks,
+.linkCategories {
+  color: #121212;
   transition: 800ms ease-in-out;
   text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .link:hover {
-  color: rgb(4, 94, 248);
+  color: #0290ff;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.FaUserCircle {
+  width: 40px;
+  height: 30px;
 }
 
 @media (max-width: 768px) {

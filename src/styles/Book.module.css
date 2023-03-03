@@ -2,5 +2,88 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding-bottom: 2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+}
+
+.bookDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category {
+  color: rgb(136, 127, 127);
+}
+
+.title {
+  color: rgb(45, 44, 44);
+}
+
+.author {
+  color: #72b8ed;
+}
+
+.title,
+.author {
+  font-family: 'Roboto Slab', serif;
+}
+
+.commRemEdit {
+  display: flex;
+  margin-bottom: 3rem;
+  gap: 2rem;
+  color: #72b8ed;
+}
+
+.remove {
+  color: #72b8ed;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.comment,
+.remove {
+  border-right: 1.5px solid rgb(174, 169, 169);
+  padding-right: 1rem;
+}
+
+.circle {
+  border: 2px solid #72b8ed;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-image-source: linear-gradient(to bottom, var(--medium-blue), #379cf6);
+}
+
+.completed {
+  display: flex;
+  gap: 1rem;
+}
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heading,
+.chapterNumber {
+  color: rgb(136, 127, 127);
+  font-family: 'Roboto Slab', serif;
+}
+
+.chapterNumber {
+  color: black;
+  font-weight: 400;
+}
+
+.progressBtn {
+  padding: 0.5rem;
+  background-color: #379cf6;
+  border: none;
+  color: #faebeb;
+  cursor: pointer;
 }
