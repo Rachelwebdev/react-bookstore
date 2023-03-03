@@ -14,17 +14,56 @@ function Book({ title, author, id }) {
   };
 
   return (
-    <li className={styles.singleBook}>
-      <p>{title}</p>
-      <p>{author}</p>
-      <button
-        data-id={id}
-        type="button"
-        onClick={removeHandler}
-      >
-        remove
-      </button>
-    </li>
+    <>
+      {/* <li className={styles.singleBook}>
+        <p>{title}</p>
+        <p>{author}</p>
+        <button
+          data-id={id}
+          type="button"
+          onClick={removeHandler}
+        >
+          remove
+        </button>
+      </li> */}
+      <li className={styles.singleBook}>
+        <div className={styles.bookDescription}>
+          <p className={styles.category}>ACTION</p>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.author}>{author}</p>
+          <div className={styles.commRemEdit}>
+            <p className={styles.comment}>comments</p>
+            <button
+              className={styles.remove}
+              data-id={id}
+              type="button"
+              onClick={removeHandler}
+            >
+              remove
+            </button>
+            <p className={styles.edit}>Edit</p>
+          </div>
+        </div>
+        <div className={styles.completed}>
+          <div className={styles.circle} />
+          <p className={styles.percentage}>
+            64%
+            <br />
+            Completed
+          </p>
+        </div>
+        <div className={styles.chapters}>
+          <p className={styles.heading}>CURRENT CHAPTER</p>
+          <p className={styles.chapterNumber}>Chapter 17</p>
+          <button
+            type="button"
+            className={styles.progressBtn}
+          >
+            UPDATE PROGRESS
+          </button>
+        </div>
+      </li>
+    </>
   );
 }
 
