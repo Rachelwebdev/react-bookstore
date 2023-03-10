@@ -2,8 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const BASE_URL =
-  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/C1TOCRXy2TrdHgmdGVbc/books';
+const BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/C1TOCRXy2TrdHgmdGVbc/books';
 
 export const postBook = createAsyncThunk(
   'bookData/postBookData',
@@ -14,7 +13,7 @@ export const postBook = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('something went wrong');
     }
-  }
+  },
 );
 
 export const getBookData = createAsyncThunk(
@@ -26,7 +25,7 @@ export const getBookData = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('something went wrong');
     }
-  }
+  },
 );
 
 export const deleteBook = createAsyncThunk(
@@ -38,7 +37,7 @@ export const deleteBook = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('something went wrong');
     }
-  }
+  },
 );
 
 const initialState = {
